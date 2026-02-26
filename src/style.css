@@ -1,0 +1,636 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@200;300;400;500&display=swap');
+
+:root {
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-sans: 'Montserrat', sans-serif;
+
+  /* Airy, Clean, Light Palette */
+  --color-bg: #FFFFFF;
+  /* Pure white background */
+  --color-surface: #FAFAFA;
+  /* Very subtle off-white for contrast areas */
+  --color-text: #2A2A2A;
+  /* Soft dark gray/black for beautiful contrast */
+  --color-accent: #9b8774;
+  /* Elegant muted gold/taupe for accents */
+  --color-light-accent: #E5E1DB;
+  /* Extremely subtle gray/beige for elegant thin borders */
+  --color-photo-text: #FFFFFF;
+  /* White for text placed directly over images */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Selection */
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* Lenis Recommended CSS */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Preloader - Clean White */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-bg);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preloader-text {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  letter-spacing: 0.2em;
+  color: var(--color-text);
+  display: flex;
+  overflow: hidden;
+}
+
+.p-char {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  /* Since hero is an image, we use difference to make menu visible over bright or dark parts */
+  mix-blend-mode: difference;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+
+.header .logo {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  letter-spacing: 0.15em;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/hero-will-sarah.png');
+  background-size: cover;
+  background-position: center 20%;
+  /* adjust framing if needed */
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Optional Overlay on Hero to make white text readable, 
+   keep it minimal to preserve the bright photo vibe */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  margin-top: 5vh;
+}
+
+.hero-subtitle {
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  margin-bottom: 2rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--color-photo-text);
+  text-shadow: 0px 2px 15px rgba(0, 0, 0, 0.4);
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(4rem, 10vw, 12rem);
+  line-height: 0.9;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--color-photo-text);
+  text-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-title .line {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+}
+
+.hero-title .word {
+  display: block;
+  transform: translateY(120%);
+}
+
+.hero-title .word.e-text {
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-style: italic;
+  font-weight: 300;
+  color: #FFFFFF;
+  text-transform: lowercase;
+  text-shadow: none;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.scroll-text {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-photo-text);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-photo-text);
+  transform: translateY(-100%);
+  animation: scroll-anim 2s infinite ease-in-out;
+}
+
+@keyframes scroll-anim {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Generic Section styling */
+.section {
+  padding: 10rem 4rem;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+/* Intro */
+.intro {
+  background-color: var(--color-bg);
+}
+
+.intro-img-wrapper {
+  overflow: hidden;
+  height: 80vh;
+  position: relative;
+}
+
+.intro-img {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  position: absolute;
+  top: -10%;
+  left: 0;
+}
+
+.intro-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.intro-text p {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  line-height: 1.25;
+  font-weight: 300;
+  color: var(--color-text);
+  text-transform: uppercase;
+}
+
+.elegant-line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-light-accent);
+}
+
+.details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-light-accent);
+  padding-bottom: 1rem;
+}
+
+.detail-item .label {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.detail-item .value {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--color-text);
+}
+
+/* Venue Section - Made Light/Airy */
+.venue {
+  background-color: var(--color-surface);
+  /* light off-white instead of dark */
+  color: var(--color-text);
+  padding: 12rem 4rem;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 300;
+  margin-bottom: 4rem;
+  text-transform: uppercase;
+  color: var(--color-text);
+  text-align: center;
+}
+
+.venue-showcase {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+  height: 60vh;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
+  /* very soft shadow for elegance */
+}
+
+.parallax-img {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  position: absolute;
+  top: -10%;
+  left: 0;
+  /* Not darkening the image much, keeping it bright */
+  filter: brightness(0.95);
+}
+
+.venue-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 4rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  z-index: 2;
+  text-align: center;
+}
+
+.venue-overlay h3 {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  color: var(--color-photo-text);
+}
+
+.venue-overlay p {
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  color: var(--color-light-accent);
+  text-transform: uppercase;
+}
+
+/* Location Map */
+.location {
+  background-color: var(--color-bg);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.location-desc {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 4rem auto;
+  line-height: 1.6;
+  font-family: var(--font-heading);
+  color: var(--color-text);
+}
+
+.map-wrapper {
+  width: 100%;
+  border-radius: 0px;
+  /* Sharp modernist edges feel more premium Awwwards */
+  overflow: hidden;
+  /* Grayscale silver map look mapping clean aesthetics */
+  filter: grayscale(1) opacity(0.8) contrast(1.1);
+  transition: filter 0.5s ease;
+}
+
+.map-wrapper:hover {
+  filter: grayscale(0) opacity(1) contrast(1);
+}
+
+/* Footer - Made Light/Airy */
+.footer {
+  background-color: var(--color-bg);
+  /* White background */
+  color: var(--color-text);
+  padding: 8rem 4rem 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-top: 1px solid var(--color-light-accent);
+}
+
+.footer-title {
+  font-family: var(--font-heading);
+  font-size: clamp(5rem, 15vw, 20rem);
+  line-height: 0.8;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  color: var(--color-text);
+}
+
+.footer p {
+  font-size: 1.2rem;
+  letter-spacing: 0.4em;
+  margin-bottom: 6rem;
+  color: var(--color-text);
+}
+
+.footer-bottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-light-accent);
+  padding-top: 2rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--color-text);
+  text-transform: uppercase;
+}
+
+/* Message Section */
+.message {
+  background-color: var(--color-bg);
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  margin-bottom: 6rem;
+}
+
+.time-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time-block span:first-child {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 300;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+.timer-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+.verse {
+  margin-bottom: 6rem;
+}
+
+.verse p {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 4vw, 3rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-accent);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.3;
+}
+
+.verse-ref {
+  display: block;
+  margin-top: 2rem;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  color: var(--color-text);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.love-letter {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: var(--font-sans);
+}
+
+.love-letter p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+}
+
+.love-letter p:first-child {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 2rem;
+  letter-spacing: 0.1em;
+}
+
+.love-letter p:last-child {
+  margin-bottom: 0;
+}
+
+/* Button */
+.btn-primary {
+  display: inline-block;
+  padding: 1.2rem 3rem;
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-accent);
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--color-accent);
+}
+
+.gifts-desc {
+  max-width: 600px;
+  margin: 0 auto 3rem auto;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    background-image: url('/foto-banner-mobile.jpeg');
+    background-position: center;
+  }
+
+  .header {
+    padding: 1.5rem 2rem;
+  }
+
+  .section {
+    padding: 6rem 2rem;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .intro-img-wrapper {
+    height: 50vh;
+  }
+
+  .intro-text p {
+    font-size: 2rem;
+  }
+
+  .venue-showcase {
+    height: 40vh;
+  }
+
+  .venue-overlay {
+    padding: 2rem;
+  }
+
+  .footer {
+    padding: 6rem 2rem 2rem 2rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+}
