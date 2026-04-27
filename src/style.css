@@ -592,7 +592,7 @@ html.lenis body {
 @media (max-width: 768px) {
   .hero {
     background-image: url('/WeS-banner.webp');
-    background-position: center;
+    background-position: 30% center;
   }
 
   .header {
