@@ -128,7 +128,7 @@ html.lenis body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url('/hero-will-sarah.png');
+  background-image: url('/site-casamento-will-e-sarah/public/WeS-banner.webp');
   background-size: cover;
   background-position: center 20%;
   /* adjust framing if needed */
@@ -591,7 +591,7 @@ html.lenis body {
 /* Responsive */
 @media (max-width: 768px) {
   .hero {
-    background-image: url('/foto-banner-mobile.jpeg');
+    background-image: url('/site-casamento-will-e-sarah/public/WeS-banner.webp');
     background-position: center;
   }
 
